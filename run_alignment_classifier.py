@@ -28,7 +28,7 @@ gold_df=get_pos_similarity(gold_df)
 
 #Construct test dataframe
 
-test_sentence_df=extract_goldsen('test.srlpredict_new5.json')
+test_sentence_df=extract_testsen('test.srlpredict_new5.json')
 test_sentence_df=get_frame_feature(test_sentence_df)
 test_sentence_df=get_pos_tag(test_sentence_df)
 
