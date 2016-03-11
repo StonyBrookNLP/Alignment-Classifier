@@ -1,7 +1,7 @@
 # Alignment-Classifier
 
 Main file- run_alignment_classifier.py .
-The json file containing train and test data must be passed to extract training and testing data along with features.
+The json file containing train and test data must be passed to extract training and testing data .
 
 The sentences are then extracted from the json file and complied into a dataframe.
 
