@@ -25,17 +25,17 @@ def classifier(tf,df,train_process_filename):#takes as input, training and testi
     f1gold=df[df['Process'].isin(train_pro)].reset_index()
     e=f1gold['Escore']
     c=f1gold['Cscore']
-    l=f1gold['True_label']
+    l=f1gold['Role']
     left=f1gold['lf_Cscore']
     right=f1gold['rf_Cscore']
     pos=f1gold['POSsim']
     postt=tf['POSsim']
-    leftt=tf['lf_Cscore']
+    leftt=tf['lf_Cscore_rev']
     rightt=tf['rf_Cscore']
     l=np.ravel(l)
     et=tf['Escore']
     ct=tf['Cscore']
-    lt=tf['True_label']
+    lt=tf['Role']
 
     X = np.array([e,c,left,right,pos]).T
     Xt = np.array([et,ct,leftt,rightt,postt]).T
@@ -79,16 +79,10 @@ def classifier(tf,df,train_process_filename):#takes as input, training and testi
     results_df=pd.DataFrame(results).T[cols].T
     print results_df
     #print predicted
-    probc=predicted[:,0]
+    probc=predicted[:,1]
     tf['Classification_result']=preds
-    tf['Probability of result']=probc
-    for i in list(tf.index.get_values()):
-        if int(tf.loc[i,'Classification_result'])==1:
-
-            tf.loc[i,'probability_align']=tf.loc[i,'Probability of result']
-        elif int(tf.loc[i,'Classification_result'])==0:
-
-            tf.loc[i,'probability_align']=1-tf.loc[i,'Probability of result']
+    tf['Probability_of_alignment']=probc
+    
     return tf
 
 
